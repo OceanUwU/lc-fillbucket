@@ -5,11 +5,6 @@ var LCFill = function(lc) {
         usesSimpleAPI: false,
         name: 'Fill',
         iconName: 'fill',
-        //optionsStyle: 'stroke-width',
-
-        getPixelPos(x, y) {
-
-        },
 
         didBecomeActive: function(lc) {
             self.unsubscribeFunc = lc.on('lc-pointerdown', function(pt) {
@@ -88,6 +83,8 @@ function LCFillFloodFill(canvas, ctx, pt, color) {
         filledData.data[pixelPos+3] = color[3];
     };
 
+    pt.rawX = Math.floor(pt.rawX)
+    pt.rawY = Math.floor(pt.rawY)
     let pixelStack = [[pt.rawX, pt.rawY]];
     let startPos = (pt.rawY*canvas.width + pt.rawX) * 4;
     let startColor = imageData.data.slice(startPos, startPos+4);
